@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Contracts\AttributeContract;
 use App\Contracts\CategoryContract;
+use App\Repositories\AttributeRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\CategoryRepository;
 
@@ -10,7 +12,8 @@ use App\Repositories\CategoryRepository;
 class RepositoryServiceProvider extends ServiceProvider
 {
     protected $repositories = [
-        CategoryContract::class => CategoryRepository::class,
+        CategoryContract::class         =>          CategoryRepository::class,
+        AttributeContract::class        =>          AttributeRepository::class,
     ];
 
     /**
@@ -22,7 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         foreach ($this->repositories as $interface => $implementation)
         {
-            $this->app->bind(CategoryContract::class, CategoryRepository::class);
+            $this->app->bind($interface, $implementation);
         }
     }
 

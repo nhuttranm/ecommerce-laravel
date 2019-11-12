@@ -2,13 +2,13 @@
     <a class="app-header__logo" href="#">{{ config('app.name') }}</a>
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
     <ul class="app-nav">
-        <li class="app-search">
+        <li class="app-search" style="display: none;">
             <input class="app-search__input" type="search" placeholder="Search" />
             <button class="app-search__button">
                 <i class="fa fa-search"></i>
             </button>
         </li>
-        <li class="dropdown">
+        <li class="dropdown" style="display: none;">
             <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
             <ul class="app-notification dropdown-menu dropdown-menu-right">
                 <li class="app-notification__title">

@@ -49,7 +49,7 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::post('/store', 'Admin\BrandController@store')->name('admin.brands.store');
             Route::get('/{id}/edit', 'Admin\BrandController@edit')->name('admin.brands.edit');
             Route::post('/update', 'Admin\BrandController@update')->name('admin.brands.update');
-            Route::post('/{id}/delete', 'Admin\BrandController@delete')->name('admin.brands.delete');
+            Route::get('/{id}/delete', 'Admin\BrandController@delete')->name('admin.brands.delete');
 
         });
 
@@ -60,7 +60,7 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::post('/store', 'Admin\ProductController@store')->name('admin.products.store');
             Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('admin.products.edit');
             Route::post('/update', 'Admin\ProductController@update')->name('admin.products.update');
-            Route::post('/{id}/delete', 'Admin\ProductController@delete')->name('admin.products.delete');
+            Route::get('/{id}/delete', 'Admin\ProductController@delete')->name('admin.products.delete');
 
             Route::post('images/upload', 'Admin\ProductImageController@upload')->name('admin.products.images.upload');
             Route::get('images/{id}/delete', 'Admin\ProductImageController@delete')->name('admin.products.images.delete');

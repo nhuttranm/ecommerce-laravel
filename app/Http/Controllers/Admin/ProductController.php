@@ -74,7 +74,6 @@ class ProductController extends BaseController
     }
 
     /**
-     * Vue js delete product method
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -82,9 +81,9 @@ class ProductController extends BaseController
     {
         $product = $this->productRepository->deleteProduct($id);
 
-        if ($product) {
-            return response()->json(['status' => 'success', 'message' => 'Product deleted successfully.']);
+        if (!$product) {
+            return $this->responseRedirectBack('Error occurred while deleting product.', 'error', true, true);
         }
-        return response()->json(['message' => 'Something went wrong while submitting product attribute.']);
+        return $this->responseRedirect('admin.products.index', 'Product deleted successfully' ,'success',false, false);
     }
 }

@@ -27,7 +27,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($products as $product)
+                        @foreach($products as $index => $product)
                             <tr>
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->sku }}</td>
@@ -38,7 +38,7 @@
                                         <span class="badge badge-info">{{ $category->name }}</span>
                                     @endforeach
                                 </td>
-                                <td>{{ config('settings.currency_symbol') }}{{ $product->price }}</td>
+                                <td class="text-right">{{ config('settings.currency_symbol') }}{{ number_format($product->price, 2) }}</td>
                                 <td class="text-center">
                                     @if ($product->status == 1)
                                         <span class="badge badge-success">Active</span>
@@ -49,7 +49,7 @@
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
                                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                        <delete-product :productid="{{ $product->id }}"></delete-product>
+                                        <a href="{{ route('admin.products.delete', $product->id) }}" class="btn btn-sm btn-danger btn-product-delete" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

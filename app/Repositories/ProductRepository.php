@@ -119,7 +119,8 @@ class ProductRepository extends BaseRepository implements ProductContract
     public function deleteProduct($id)
     {
         $res = false;
-        DB::transaction(function () use ($id, $res) {
+        try {
+            DB::beginTransaction();
             // Process delete image files
             $product = $this->findProductById($id);
             foreach ($product->images as $image) {
@@ -129,7 +130,11 @@ class ProductRepository extends BaseRepository implements ProductContract
             DB::table('product_attributes')->where('product_id', $id)->delete();
             DB::table('product_categories')->where('product_id', $id)->delete();
             $res = DB::table('products')->where('id', $id)->delete();
-        });
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            throw new \Exception($exception->getMessage());
+        }
         return $res;
     }
 }

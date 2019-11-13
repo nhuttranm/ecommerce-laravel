@@ -97,4 +97,18 @@ class BrandController extends BaseController
         }
         return $this->responseRedirectBack('Brand updated successfully' ,'success',false, false);
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id)
+    {
+        $brand = $this->brandRepository->deleteBrand($id);
+
+        if (!$brand) {
+            return $this->responseRedirectBack('Error occurred while deleting brand.', 'error', true, true);
+        }
+        return $this->responseRedirect('admin.brands.index', 'Brand deleted successfully' ,'success',false, false);
+    }
 }

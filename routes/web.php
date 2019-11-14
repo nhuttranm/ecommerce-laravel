@@ -13,6 +13,7 @@
 Auth::routes();
 Route::view('/', 'site.pages.homepage');
 Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
+Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');
 
 Route::view('/admin', 'admin.dashboard.index');
 Route::view('/admin/login', 'admin.auth.login');

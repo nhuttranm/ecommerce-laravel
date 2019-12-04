@@ -12,7 +12,7 @@ class PasswordCheck
      *
      * @return array error
      */
-    public function passwordCheck($password){
+    public static function passwordCheck($password){
         $passwordErr = '';
         // 半角英数字をそれぞれ1種類以上含む
         if (preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{'.PASSWORD_MIN_LEN.',100}+\z/i', $password) === false ||
